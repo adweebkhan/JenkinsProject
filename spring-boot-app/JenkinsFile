@@ -9,7 +9,7 @@ pipeline {
     stage('Checkout') {
       steps {
         sh 'echo passed'
-        //git branch: 'master', url: 'https://github.com/Sajiyah-Salat/Jenkins-e2e-k8s.git'
+        //git branch: 'master', url: 'https://github.com/adweebkhan/JenkinsProject'
       }
     }
     stage('Build and Test') {
@@ -21,7 +21,7 @@ pipeline {
     }
     stage('Static Code Analysis') {
       environment {
-        SONAR_URL = "http://34.234.204.113:9000"
+        SONAR_URL = "https://18.233.65.50:9000"
       }
       steps {
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
@@ -31,7 +31,7 @@ pipeline {
     }
     stage('Build and Push Docker Image') {
       environment {
-        DOCKER_IMAGE = "sajiyahsalat/ultimate-cicd:${BUILD_NUMBER}"
+        DOCKER_IMAGE = "akhan12300/ultimate-cicd:${BUILD_NUMBER}"
         // DOCKERFILE_LOCATION = "./spring-boot-app/Dockerfile"
         REGISTRY_CREDENTIALS = credentials('docker-cred')
       }
@@ -47,8 +47,8 @@ pipeline {
     }
     stage('Update Deployment File') {
         environment {
-            GIT_REPO_NAME = "Jenkins-e2e-k8s"
-            GIT_USER_NAME = "Sajiyah-Salat"
+            GIT_REPO_NAME = "JenkinsProject"
+            GIT_USER_NAME = "adweebkhan"
         }
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
