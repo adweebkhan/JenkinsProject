@@ -53,8 +53,8 @@ pipeline {
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
-                    git config user.email "salatsajiya7.8.6@gmail.com"
-                    git config user.name "Sajiyah-Salat"
+                    git config user.email "adeebtkhan@gmail.com"
+                    git config user.name "adweebkhan"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" ./spring-boot-app-manifests/deployment.yml
                     git add ./spring-boot-app-manifests/deployment.yml
